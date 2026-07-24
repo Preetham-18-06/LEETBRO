@@ -4,9 +4,8 @@ class Solution {
         int area=0,maxarea=0;
         while(left<right)
         {
-            area=min(height[left],height[right])*(right-left);
-            if(area>maxarea)
-            maxarea=area;
+            area=Math.min(height[left],height[right])*(right-left);
+            maxarea=Math.max(area,maxarea);
             if(height[left]<height[right])
             left++;
             else 
@@ -15,11 +14,5 @@ class Solution {
         }
         return maxarea;
     }
-    int min(int a,int b)
-    {
-        if(a>b)
-        return b;
-        else 
-        return a;
-    }
+    
 }
