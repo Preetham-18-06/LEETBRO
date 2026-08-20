@@ -10,13 +10,14 @@ class Solution {
             map.put(nums[i],map.getOrDefault(nums[i],0)+1);
         }
 
+        
         if(map.size()==k)
         max=currentSum;
 
-        for(int i=1;i<=n-k;i++){
+        for(int i=1;i<=n-k;i++)
+        {
             int outgoing=nums[i-1];
             int count=map.get(outgoing);
-
             if(count==1)
             map.remove(outgoing);
             else 
@@ -24,10 +25,9 @@ class Solution {
 
             int incoming=nums[k+i-1];
             map.put(incoming,map.getOrDefault(incoming,0)+1);
-
-            currentSum=currentSum-outgoing+incoming;
+            currentSum=currentSum+incoming-outgoing;
             if(map.size()==k)
-            max=Math.max(max,currentSum);
+            max=Math.max(currentSum,max);
         }
         return max;
     }
