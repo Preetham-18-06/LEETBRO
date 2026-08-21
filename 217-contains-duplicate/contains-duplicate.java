@@ -2,17 +2,13 @@ import java.util.HashSet;
 
 class Solution {
     public boolean containsDuplicate(int[] nums) {
+        boolean ans=false;
         int n=nums.length;
-        boolean ans=true;
         HashSet<Integer> set=new HashSet<>();
-        for(int i=0;i<n;i++)
-        {
-            set.add(nums[i]);
-        }
-        if(set.size()==n)
-        {
-            ans=false;
-        }
+        for(int x:nums)
+            set.add(x);
+        if(n>set.size())
+        ans=true;
         return ans;
     }
 }
