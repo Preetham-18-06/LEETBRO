@@ -4,7 +4,7 @@ class Solution {
         for(int x:nums1)
         min=Math.min(min,x);
         if(min%2!=0)
-            return true;
+        return true;
         for(int i=0;i<nums1.length;i++)
         {
             if(nums1[i]%2!=0)
