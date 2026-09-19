@@ -1,38 +1,32 @@
 class Solution {
     public int minSumOfLengths(int[] arr, int target) {
-        int n = arr.length;
-        int INF = n + 1;
+        int left=0,len=0;
+        int sum=0,ans=Integer.MAX_VALUE;
+        int best[]=new int[arr.length];
+        Arrays.fill(best,Integer.MAX_VALUE);
+        for(int right=0;right<arr.length;right++)
+        {
+            sum+=arr[right];
 
-        // best[i] = shortest valid subarray ending at or before i
-        int[] best = new int[n];
-        Arrays.fill(best, INF);
-
-        int left = 0;
-        int sum = 0;
-        int answer = INF;
-        int minLength = INF;
-
-        for (int right = 0; right < n; right++) {
-            sum += arr[right];
-
-            while (sum > target) {
-                sum -= arr[left++];
+            while(sum>target)
+            {
+                sum-=arr[left];
+                left++;
             }
 
-            if (sum == target) {
-                int length = right - left + 1;
+            if(right>0)
+            best[right]=best[right-1];
 
-                // Combine with a previous non-overlapping subarray
-                if (left > 0 && best[left - 1] != INF) {
-                    answer = Math.min(answer, length + best[left - 1]);
-                }
+            if(sum==target)
+            {
+                len=right-left+1;
 
-                minLength = Math.min(minLength, length);
-            }
-
-            best[right] = minLength;
+                if(left>0 && best[left-1]!=Integer.MAX_VALUE)
+                ans=Math.min(ans,len+best[left-1]);
+                best[right] = Math.min(best[right], len);
+            }   
+            
         }
-
-        return answer == INF ? -1 : answer;
+        return ans==Integer.MAX_VALUE?-1:ans;
     }
 }
