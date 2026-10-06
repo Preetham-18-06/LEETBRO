@@ -3,6 +3,7 @@ class Solution {
 
         if(s.length() != t.length())
             return false;
+            
         HashMap<Character,Integer> map1=new HashMap<>();
         HashMap<Character,Integer> map2=new HashMap<>();
 
