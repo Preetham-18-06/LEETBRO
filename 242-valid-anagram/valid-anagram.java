@@ -4,21 +4,18 @@ class Solution {
         if(s.length() != t.length())
             return false;
             
-        HashMap<Character,Integer> map1=new HashMap<>();
-        HashMap<Character,Integer> map2=new HashMap<>();
-
-        for(char c:s.toCharArray())
-        map1.put(c,map1.getOrDefault(c,0)+1);
-
-        for(char c:t.toCharArray())
-        map2.put(c,map2.getOrDefault(c,0)+1);
-
-        for(char c:map1.keySet())
+        int[] freq=new int[26];
+        for(int i=0;i<s.length();i++)
         {
-            if(!map1.get(c).equals(map2.get(c)))
+            freq[s.charAt(i)-'a']++;
+            freq[t.charAt(i)-'a']--;
+        }
+
+        for(int x:freq)
+        {
+            if(x!=0)
             return false;
         }
         return true;
-
     }
 }
