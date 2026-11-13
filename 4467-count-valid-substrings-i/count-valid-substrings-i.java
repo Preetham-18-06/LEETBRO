@@ -1,12 +1,12 @@
 class Solution {
     public long countValidSubstrings(String s) {
-        int left=0,n=s.length();
         long count=0;
-        for(int right=0;right<n;right++)
+        int l=0,n=s.length();
+        for(int r=0;r<n;r++)
         {
-            if(right>=2 && s.substring(right-2,right+1).equals("abc"))
-            left=Math.max(left,right-1);
-            count+=right-left+1;
+            if(r>=2 && s.substring(r-2,r+1).equals("abc"))
+            l=Math.max(l,r-1);
+            count+=(r-l+1);
         }
         return count;
     }
